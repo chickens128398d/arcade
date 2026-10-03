@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Grabber Arcade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="empty-machine.css" />
+    <link rel="stylesheet" href="progression.css" />
+  </head>
+  <body>
+    <div class="page-glow"></div>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Task Grabber home"><span class="brand-star">✦</span>TASK GRABBER</a>
+        <div class="status-strip" aria-label="Player status">
+          <div class="status-item"><span class="status-icon">◎</span><span><b id="creditCount">0</b> POINTS</span></div>
+          <div class="status-item"><span class="status-icon">▣</span><span><b id="taskCount">0</b> TASKS DONE</span></div>
+          <button class="sound-button" id="soundButton" type="button" aria-label="Toggle sound">♫</button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">YOUR DAILY QUEST</p>
+          <h1>DO THE THING.<br><span>GET THE PRIZE.</span></h1>
+          <p class="hero-text">Complete real-life tasks to earn points, build your streak, and unlock a golden claw skin.</p>
+          <div class="hero-actions"><a class="text-link" href="#machine">HOW IT WORKS <span>↓</span></a></div>
+        </div>
+        <div class="credit-card">
+          <div class="credit-top"><span>YOUR WALLET</span><span class="pulse-dot"></span></div>
+          <div class="big-credit"><span id="heroCredits">0</span><small>PTS</small></div>
+          <div class="credit-meter"><i id="creditMeter"></i></div>
+          <p>20 POINTS = 1 PLAY</p>
+          <div class="goal-label"><span>GOLDEN CLAW GOAL</span><b><span id="goalPoints">0</span> / 500</b></div>
+          <div class="goal-meter"><i id="goalMeter"></i></div>
+        </div>
+      </section>
+
+      <section class="progress-row">
+        <article class="streak-panel panel">
+          <div class="panel-heading"><div><p class="eyebrow">LOGIN BONUS</p><h2>DAILY STREAK</h2></div><span class="streak-count" id="streakCount">DAY 0</span></div>
+          <p class="streak-copy" id="streakCopy">Come back tomorrow to start your streak.</p>
+          <div class="streak-track" id="streakTrack"></div>
+          <button class="btn btn-cyan streak-button" id="claimStreak" type="button">CLAIM TODAY'S PRIZE</button>
+        </article>
+        <article class="goal-panel panel">
+          <p class="eyebrow">NEXT UNLOCK</p><h2>500 POINT PRIZE</h2>
+          <div class="goal-prize"><span>🦾</span><div><b>GOLDEN CLAW SKIN</b><small id="goalCopy">500 points to go</small></div></div>
+          <div class="goal-large-meter"><i id="goalLargeMeter"></i></div>
+        </article>
+      </section>
+
+      <section class="dashboard">
+        <article class="tasks-panel panel">
+          <div class="panel-heading">
+            <div><p class="eyebrow">MISSION CONTROL</p><h2>YOUR TASKS</h2></div>
+            <span class="mini-count" id="openCount">0 OPEN</span>
+          </div>
+          <form class="task-form" id="taskForm">
+            <input id="taskInput" type="text" autocomplete="off" maxlength="80" placeholder="Add a task to your quest..." aria-label="New task" />
+            <button class="add-button" type="submit" aria-label="Add task">+</button>
+          </form>
+          <ul class="task-list" id="taskList"></ul>
+          <div class="empty-state" id="emptyState">
+            <span>✦</span><p>No quests yet. Add one above!</p>
+          </div>
+          <div class="task-foot"><span>COMPLETE A TASK</span><b>+20 PTS</b></div>
+        </article>
+
+        <article class="machine-panel panel" id="machine">
+          <div class="panel-heading machine-heading">
+            <div><p class="eyebrow">INSERT CREDITS TO PLAY</p><h2>THE GRABBER</h2></div>
+            <span class="play-cost">20 CR / PLAY</span>
+          </div>
+          <div class="machine-wrap" id="machineWrap" tabindex="0" aria-label="Claw machine. Use WASD to move the claw, then space to grab.">
+            <div class="machine-top"><span>LUCKY GRAB</span><i>★★★</i></div>
+            <div class="machine-window">
+              <div class="sparkles" aria-hidden="true"><i>✦</i><i>✦</i><i>+</i><i>✦</i></div>
+              <div class="claw-track"><div class="claw" id="claw"><div class="cable"></div><div class="claw-head">●</div><div class="claw-arms"><i></i><i></i><i></i></div></div></div>
+              <div class="prize-floor" id="prizeFloor"></div>
+            </div>
+            <div class="machine-base"><span>PRIZE CHUTE</span><div class="chute"></div><i>◉</i></div>
+          </div>
+          <div class="machine-controls">
+            <div class="key-guide"><span>W</span><span>A</span><span>S</span><span>D</span><em>MOVE</em></div>
+            <button class="grab-button" id="grabButton" type="button">SPACE <b>GRAB!</b></button>
+            <p id="machineMessage">Earn 20 credits to play!</p>
+          </div>
+        </article>
+      </section>
+
+      <section class="collection panel">
+        <div class="collection-head"><div><p class="eyebrow">SHELF OF GLORY</p><h2>YOUR PRIZE COLLECTION</h2></div><span id="collectionTotal">0 PRIZES</span></div>
+        <div class="collection-grid" id="collectionGrid"><div class="collection-empty">YOUR FIRST PRIZE IS WAITING...</div></div>
+      </section>
+
+      <section class="extras-grid">
+        <article class="skins-panel panel">
+          <div class="collection-head"><div><p class="eyebrow">LOADOUT</p><h2>EQUIP A CLAW</h2></div><span id="skinCount">0 SKINS</span></div>
+          <div class="skin-grid" id="skinGrid"></div>
+        </article>
+        <article class="shop-panel panel" id="shop">
+          <div class="collection-head"><div><p class="eyebrow">ARCADE STORE</p><h2>THE SHOP</h2></div><span>SPEND POINTS</span></div>
+          <div class="shop-grid" id="shopGrid"></div>
+        </article>
+      </section>
+    </main>
+    <div class="toast" id="toast" role="status"></div>
+    <script src="script.js"></script>
+  </body>
+</html>

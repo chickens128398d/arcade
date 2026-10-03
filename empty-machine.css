@@ -1,0 +1,23 @@
+.machine-empty .machine-window {
+  background: #25255d;
+}
+
+.machine-empty .sparkles,
+.machine-empty .claw-track {
+  display: none;
+}
+
+.machine-empty .machine-window::before {
+  content: "NO ACTIVE QUESTS";
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  color: var(--cyan);
+  font: 11px "Press Start 2P", monospace;
+}
+
+.machine-empty .machine-window::after {
+  display: none;
+}
